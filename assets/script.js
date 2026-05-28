@@ -55,7 +55,7 @@ function initMobileMenu() {
     if (isOpen) {
       lines[0].style.transform = 'translateY(7px) rotate(45deg)';
       lines[1].style.opacity   = '0';
-      lines[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+      lines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
     } else {
       lines[0].style.transform = '';
       lines[1].style.opacity   = '';
