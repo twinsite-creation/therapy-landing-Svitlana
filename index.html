@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Світлана — Психотерапевт · Приватна практика</title>
+    <meta
+      name="description"
+      content="Психотерапія з фокусом на залежність, співзалежність та стосунки. Безпечний простір для справжніх змін."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      /* ─── Location / Map block ───────────────────────────── */
+      .location-block {
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-soft);
+        background: var(--surface);
+      }
+
+      .location-map {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        background: var(--mist);
+      }
+      .location-map iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        /* desaturate the default colorful map to match site palette */
+        filter: saturate(0.55) contrast(0.92) brightness(1.04);
+        transition: filter 0.35s;
+      }
+      .location-map:hover iframe {
+        filter: saturate(0.85) contrast(0.96) brightness(1.02);
+      }
+      /* subtle vignette overlay so map edges fade softly */
+      .location-map::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        box-shadow: inset 0 0 28px 8px var(--surface);
+        z-index: 1;
+      }
+
+      .location-info {
+        padding: 1.25rem 1.5rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .location-info__row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .location-info__icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--accent-lt);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--accent);
+        margin-top: 1px;
+      }
+
+      .location-info__label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+        margin-bottom: 0.2rem;
+      }
+
+      .location-info__value {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--text);
+        font-weight: 500;
+        line-height: 1.55;
+      }
+
+      .location-info__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+        padding-top: 0.25rem;
+        border-bottom: 1.5px solid transparent;
+        transition: border-color 0.2s, color 0.2s;
+        align-self: flex-start;
+      }
+      .location-info__link:hover {
+        border-color: var(--accent);
+        color: var(--slate);
+      }
+      .location-info__link svg {
+        transition: transform 0.2s var(--ease-out);
+      }
+      .location-info__link:hover svg {
+        transform: translateX(3px);
+      }
+
+      /* Footer address pill */
+      .footer__address {
+        font-style: normal;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.5);
+        white-space: nowrap;
+      }
+      .footer__address svg {
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+
+      @media (max-width: 768px) {
+        .footer__address { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-bar" aria-hidden="true"></div>
+
+    <!-- ─── HEADER ─── -->
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="#hero" class="header__logo">
+          <span class="header__logo-name">Світлана</span>
+          <span class="header__logo-sub">Психотерапевт · Приватна практика</span>
+        </a>
+        <nav class="header__nav" aria-label="Навігація">
+          <a href="#about" class="header__nav-link">Про мене</a>
+          <a href="#directions" class="header__nav-link">Напрямки</a>
+          <a href="#how" class="header__nav-link">Як це працює</a>
+          <a href="#contact" class="header__nav-link">Контакт</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 1rem">
+          <a href="#contact" class="header__cta">Записатися</a>
+          <button
+            class="header__burger"
+            id="burgerBtn"
+            aria-label="Відкрити меню"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ─── MOBILE MENU ─── -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog">
+      <div class="mobile-menu__inner">
+        <nav>
+          <a href="#about" class="mobile-menu__link">Про мене</a>
+          <a href="#directions" class="mobile-menu__link">Напрямки</a>
+          <a href="#how" class="mobile-menu__link">Як це працює</a>
+          <a href="#contact" class="mobile-menu__link">Контакт</a>
+        </nav>
+        <a href="#contact" class="mobile-menu__cta">Записатися на сесію</a>
+      </div>
+    </div>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="hero">
+      <div class="hero__photo" aria-hidden="true">
+        <img
+          src="assets/images/svitlana-psychotherapist-02.webp"
+          alt=""
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero__deco" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span class="hero__eyebrow-dot"></span>
+            <span class="hero__eyebrow-line"></span>
+            Психотерапевт · онлайн та офлайн
+          </p>
+          <h1 class="hero__title">
+            Місце, де можна<br />бути собою —
+            <em>без сорому</em>
+          </h1>
+          <div class="hero__rule"></div>
+          <p class="hero__lead">
+            Я працюю з людьми, які стомилися нести свій біль наодинці.
+            Залежність, співзалежність, стосунки — тут немає осуду. Є підтримка
+            та справжні зміни.
+          </p>
+          <div class="hero__actions">
+            <a href="#contact" class="btn-primary">
+              <span>Записатися на сесію</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#about" class="btn-ghost-light">Дізнатися більше</a>
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat-num">8+</span>
+              <span class="stat-label">Років практики</span>
+            </div>
+            <div class="stat-sep" aria-hidden="true"></div>
+            <div class="stat">
+              <span class="stat-num">2000+</span>
+              <span class="stat-label">Годин терапії</span>
+            </div>
+            <div class="stat-sep" aria-hidden="true"></div>
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Конфіденційно</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-track"></div>
+      </div>
+    </section>
+
+    <!-- ─── FOR WHOM ─── -->
+    <section class="section for-whom" id="for-whom">
+      <div class="container">
+        <div class="for-whom__inner">
+          <div class="for-whom__left reveal" data-reveal="left">
+            <span class="section-label">Для кого</span>
+            <h2 class="for-whom__title">
+              Ви тут не<br />випадково —<br />
+              <em>я вас розумію</em>
+            </h2>
+            <p class="for-whom__text">
+              До мене приходять люди, які давно несуть щось важке всередині. Ті,
+              хто втомився пояснювати близьким, що відбувається. Хто соромиться
+              просити допомогу. Хто вже не вірить, що може бути інакше.<br /><br />
+              Тут немає осуду. Є простір, де вас почують, зрозуміють і
+              підтримають — так, як вам потрібно.
+            </p>
+          </div>
+          <div class="for-whom__right reveal" data-reveal="right">
+            <div class="state-card">
+              <div class="state-card__icon">🌊</div>
+              <div class="state-card__title">Залежність</div>
+              <div class="state-card__text">Відчуття, що ви втратили контроль над власним життям</div>
+            </div>
+            <div class="state-card">
+              <div class="state-card__icon">🔗</div>
+              <div class="state-card__title">Співзалежність</div>
+              <div class="state-card__text">Ви живете чужим болем більше, ніж власним</div>
+            </div>
+            <div class="state-card">
+              <div class="state-card__icon">🕯️</div>
+              <div class="state-card__title">Емоційне виснаження</div>
+              <div class="state-card__text">Немає сил, немає радості — є лише тягар</div>
+            </div>
+            <div class="state-card">
+              <div class="state-card__icon">💔</div>
+              <div class="state-card__title">Біль у стосунках</div>
+              <div class="state-card__text">Близькість болить, а самотність страшить</div>
+            </div>
+            <div class="state-card state-card--wide">
+              <div class="state-card__icon">🪞</div>
+              <div class="state-card__title">Самооцінка та внутрішня напруга</div>
+              <div class="state-card__text">Відчуття, що щось із вами не так — навіть коли зовні все виглядає нормально</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ATMOSPHERE BAND 1 ─── -->
+    <div class="atmo-band" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=70&auto=format" alt="" loading="lazy" />
+      <div class="atmo-band__overlay"></div>
+    </div>
+
+    <!-- ─── DIRECTIONS ─── -->
+    <section class="section directions" id="directions">
+      <div class="container">
+        <div class="directions__header">
+          <div class="reveal" data-reveal="left">
+            <span class="section-label">Напрямки роботи</span>
+            <h2 class="directions__title">З чим<br />я працюю</h2>
+          </div>
+          <p class="directions__subtitle reveal" data-reveal="right">
+            Кожен запит унікальний. Я не лікую симптоми — я допомагаю зрозуміти,
+            що за ними стоїть, і знайти вихід, який підходить саме вам.
+          </p>
+        </div>
+        <div class="directions__grid">
+          <div class="dir-card dir-card--priority-lg reveal" data-reveal="bottom" data-delay="0">
+            <div class="dir-card__image">
+              <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?w=900&q=70&auto=format" alt="" loading="lazy" />
+              <div class="dir-card__image-overlay"></div>
+            </div>
+            <div class="dir-card__body">
+              <span class="dir-card__badge">Пріоритетний напрямок</span>
+              <h3 class="dir-card__title">Залежність</h3>
+              <p class="dir-card__text">Алкогольна, наркотична, ігрова залежність — це не проблема сили волі. Це глибокий внутрішній біль, який шукає виходу. Разом ми розберемося, що за цим стоїть, і побудуємо новий шлях уперед.</p>
+              <span class="dir-card__num">01</span>
+            </div>
+          </div>
+          <div class="dir-card dir-card--priority-sm reveal" data-reveal="bottom" data-delay="80">
+            <div class="dir-card__image">
+              <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=70&auto=format" alt="" loading="lazy" />
+              <div class="dir-card__image-overlay"></div>
+            </div>
+            <div class="dir-card__body">
+              <span class="dir-card__badge">Пріоритетний напрямок</span>
+              <h3 class="dir-card__title">Співзалежність</h3>
+              <p class="dir-card__text">Якщо ви живете поруч із залежною людиною — ви теж потребуєте підтримки. Я допомагаю відновити власні кордони і повернутися до себе.</p>
+              <span class="dir-card__num">02</span>
+            </div>
+          </div>
+          <div class="dir-card dir-card--third reveal" data-reveal="bottom" data-delay="0">
+            <div class="dir-card__image">
+              <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=70&auto=format" alt="" loading="lazy" />
+              <div class="dir-card__image-overlay"></div>
+            </div>
+            <div class="dir-card__body">
+              <h3 class="dir-card__title">Стосунки</h3>
+              <p class="dir-card__text">Болісні патерни, страх близькості, повторювані конфлікти — разом ми знаходимо першопричини й будуємо здорову близькість.</p>
+              <span class="dir-card__num">03</span>
+            </div>
+          </div>
+          <div class="dir-card dir-card--third reveal" data-reveal="bottom" data-delay="80">
+            <div class="dir-card__image">
+              <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&q=70&auto=format" alt="" loading="lazy" />
+              <div class="dir-card__image-overlay"></div>
+            </div>
+            <div class="dir-card__body">
+              <h3 class="dir-card__title">Самооцінка</h3>
+              <p class="dir-card__text">Синдром самозванця, внутрішня критика, відчуття «я недостатньо» — це можна змінити через глибоку роботу з собою.</p>
+              <span class="dir-card__num">04</span>
+            </div>
+          </div>
+          <div class="dir-card dir-card--third reveal" data-reveal="bottom" data-delay="160">
+            <div class="dir-card__image">
+              <img src="https://images.unsplash.com/photo-1490810194309-344b3661ba39?w=600&q=70&auto=format" alt="" loading="lazy" />
+              <div class="dir-card__image-overlay"></div>
+            </div>
+            <div class="dir-card__body">
+              <h3 class="dir-card__title">Близькі людей із залежністю</h3>
+              <p class="dir-card__text">Ви любите когось залежного. Ви хочете допомогти, але виснажуєтесь. Тут є місце і для вас, і для вашого болю.</p>
+              <span class="dir-card__num">05</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="about__inner">
+          <div class="about__photo-wrap reveal" data-reveal="left">
+            <div class="about__photo-frame">
+              <img
+                src="assets/images/svitlana-psychotherapist-01.webp"
+                alt="Світлана — психотерапевт"
+                class="about__photo"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="about__content reveal" data-reveal="right">
+            <div>
+              <span class="section-label">Про мене</span>
+              <h2 class="about__title">Психотерапевт,<br />який <em>поряд</em></h2>
+            </div>
+            <p class="about__lead">
+              Мене звати Світлана. Я — сертифікований психотерапевт із понад
+              8-річним досвідом роботи у сфері залежностей та стосунків. Моя
+              практика побудована на повазі, прийнятті та вірі в те, що кожна
+              людина здатна до змін.
+            </p>
+            <p class="about__text">
+              Я обрала цей шлях, бо знаю: залежність і співзалежність — це не
+              вирок. Це досвід, з яким можна працювати. Мій підхід інтегративний
+              — я поєдную когнітивно-поведінкову терапію, системну роботу та
+              елементи роботи з тілом.<br /><br />
+              На сесіях немає правильних чи неправильних відповідей. Є ваш темп,
+              ваш простір і моя повна присутність поряд із вами.
+            </p>
+            <div class="about__creds">
+              <div class="cred">
+                <div class="cred__icon">🎓</div>
+                <div class="cred__text">
+                  <strong>Освіта</strong>
+                  Сертифікована психотерапевт, вища психологічна освіта
+                </div>
+              </div>
+              <div class="cred">
+                <div class="cred__icon">🏛️</div>
+                <div class="cred__text">
+                  <strong>Супервізія</strong>
+                  Регулярна супервізія та безперервне навчання
+                </div>
+              </div>
+              <div class="cred">
+                <div class="cred__icon">🔒</div>
+                <div class="cred__text">
+                  <strong>Конфіденційність</strong>
+                  Жодна інформація не виходить за межі сесії
+                </div>
+              </div>
+              <div class="cred">
+                <div class="cred__icon">🌐</div>
+                <div class="cred__text">
+                  <strong>Формат</strong>
+                  Онлайн та офлайн, індивідуально та для пар
+                </div>
+              </div>
+            </div>
+            <a href="#contact" class="btn-primary" style="align-self: flex-start">
+              <span>Записатися на консультацію</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ATMOSPHERE BAND 2 ─── -->
+    <div class="atmo-band" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1474293397900-df8b9db33017?w=1600&q=70&auto=format" alt="" loading="lazy" />
+      <div class="atmo-band__overlay"></div>
+    </div>
+
+    <!-- ─── HOW IT WORKS ─── -->
+    <section class="section how" id="how">
+      <div class="container">
+        <div class="how__header reveal" data-reveal="top">
+          <span class="section-label">Як це працює</span>
+          <h2 class="how__title">Три кроки до початку</h2>
+          <p class="how__subtitle">Зробити перший крок — найважче. Я зроблю все, щоб він був якомога простішим.</p>
+        </div>
+        <div class="how__steps">
+          <div class="step reveal" data-reveal="bottom" data-delay="0">
+            <div class="step__num">1</div>
+            <h3 class="step__title">Зверніться до мене</h3>
+            <p class="step__text">Напишіть у зручний месенджер. Немає потреби одразу пояснювати все — просто скажіть «хочу поговорити».</p>
+          </div>
+          <div class="step reveal" data-reveal="bottom" data-delay="100">
+            <div class="step__num">2</div>
+            <h3 class="step__title">Перша зустріч</h3>
+            <p class="step__text">Безоціночна ознайомча сесія — щоб ви відчули, чи підходить вам такий формат роботи, і ми разом визначили запит.</p>
+          </div>
+          <div class="step reveal" data-reveal="bottom" data-delay="200">
+            <div class="step__num">3</div>
+            <h3 class="step__title">Регулярна терапія</h3>
+            <p class="step__text">Зустрічі раз на тиждень або за потреби. Поступово, у вашому темпі — до змін, які ви самі відчуєте.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA BANNER ─── -->
+    <div class="cta-banner">
+      <div class="cta-banner__inner reveal" data-reveal="bottom">
+        <h2 class="cta-banner__title">Готові зробити<br /><em>перший крок?</em></h2>
+        <p class="cta-banner__text">Записатися можна зараз. Перша консультація — це просто розмова без зобов'язань.</p>
+        <a href="#contact" class="btn-white">
+          <span>Написати Світлані</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── CONTACT ─── -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact__inner">
+
+          <!-- Left: info + photo + MAP -->
+          <div class="contact__info reveal" data-reveal="left">
+            <div>
+              <span class="section-label">Зв'язок</span>
+              <h2 class="contact__title">Напишіть мені —<br /><em>це безпечно</em></h2>
+            </div>
+            <p class="contact__text">
+              Зробити перший крок буває важко. Але ви вже тут — і це вже багато
+              означає. Напишіть у зручний спосіб, і ми разом узгодимо час та
+              формат зустрічі.
+            </p>
+            <div style="border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+              <img
+                src="assets/images/svitlana-psychotherapist-01.webp"
+                alt="Світлана"
+                style="width: 100%; height: 220px; object-fit: cover; object-position: center 12%; display: block;"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- ════ MAP & ADDRESS ════ -->
+            <div class="location-block">
+
+              <!-- Map embed -->
+              <div class="location-map">
+                <!--
+                  Як замінити на реальну карту:
+                  1. Відкрийте Google Maps і знайдіть адресу кабінету
+                  2. Натисніть Share → Embed a map
+                  3. Скопіюйте значення src з тегу <iframe>
+                  4. Вставте його нижче замість поточного src
+                -->
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.4560!2d30.5241!3d50.4501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjQiTiAzMMKwMzEnMjYuOCJF!5e0!3m2!1suk!2sua!4v1700000000000"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Розташування кабінету"
+                  allowfullscreen=""
+                ></iframe>
+              </div>
+
+              <!-- Address info -->
+              <div class="location-info">
+                <div class="location-info__row">
+                  <span class="location-info__icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="location-info__label">Адреса кабінету</span>
+                    <!-- ↓ ЗАМІНІТЬ НА РЕАЛЬНУ АДРЕСУ -->
+                    <span class="location-info__value">
+                      вул. Назва вулиці, 12, офіс 34<br />
+                      м. Місто, Україна
+                    </span>
+                  </div>
+                </div>
+                <div class="location-info__row">
+                  <span class="location-info__icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="location-info__label">Години прийому</span>
+                    <span class="location-info__value">
+                      Пн–Пт: 10:00 – 20:00<br />
+                      Сб: за попереднім записом
+                    </span>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=вул.+Назва+вулиці+12+Місто"
+                  target="_blank"
+                  rel="noopener"
+                  class="location-info__link"
+                >
+                  Прокласти маршрут
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- ════ /MAP & ADDRESS ════ -->
+
+          </div>
+
+          <!-- Right: contact card -->
+          <div class="contact__card reveal" data-reveal="right">
+            <div>
+              <p class="contact__block-label">Месенджери</p>
+              <div class="messenger-links">
+                <a href="https://t.me/username" target="_blank" rel="noopener" class="messenger-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                  Telegram
+                </a>
+                <a href="viber://chat?number=+380000000000" class="messenger-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.4 0C5.5.1 1.1 4.5 1 10.4c-.1 3.2.9 5.9 2.8 7.9v3.3c0 .6.5 1.1 1.1 1.1h.2l3.1-1.1c1.1.4 2.4.6 3.7.6h.4c5.8-.1 10.2-4.5 10.3-10.4C22.5 5.8 17.5.6 11.4 0zm5.2 15.6c-.5.5-1.1.8-1.7.8-.2 0-.4 0-.6-.1-1.9-.7-3.7-1.8-5.2-3.3C7.6 11.5 6.5 9.7 5.8 7.8c-.3-.9-.1-1.8.5-2.4l.5-.5c.4-.4 1-.4 1.4 0l1.3 1.3c.4.4.4 1 0 1.4l-.5.5c-.2.2-.2.4-.1.7.5 1 1.2 1.9 2 2.7.8.8 1.7 1.5 2.7 2 .3.1.5.1.7-.1l.5-.5c.4-.4 1-.4 1.4 0l1.3 1.3c.4.5.4 1.1.1 1.4z"/>
+                  </svg>
+                  Viber
+                </a>
+                <a href="https://wa.me/380000000000" target="_blank" rel="noopener" class="messenger-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                  </svg>
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+            <div>
+              <p class="contact__block-label">Соціальні мережі</p>
+              <div class="social-links">
+                <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="contact__note">
+              🕐 Відповідаю протягом 24 годин у будні дні.<br />
+              🔒 Повна конфіденційність гарантована.
+            </div>
+            <a href="https://t.me/username" target="_blank" rel="noopener" class="btn-primary" style="justify-content: center">
+              <span>Написати в Telegram</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <span class="footer__logo-name">Світлана · Психотерапевт</span>
+          <span class="footer__logo-sub">Залежність · Співзалежність · Стосунки</span>
+        </div>
+
+        <!-- Address in footer — compact pill -->
+        <address class="footer__address">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <!-- ↓ ЗАМІНІТЬ НА РЕАЛЬНУ АДРЕСУ -->
+          вул. Назва вулиці, 12, м. Місто
+        </address>
+
+        <p class="footer__copy">© 2025 · Приватна практика</p>
+        <nav class="footer__links" aria-label="Футер-навігація">
+          <a href="#about" class="footer__link">Про мене</a>
+          <a href="#directions" class="footer__link">Напрямки</a>
+          <a href="#contact" class="footer__link">Контакт</a>
+        </nav>
+      </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Нагору">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 14V4M4 9l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>
