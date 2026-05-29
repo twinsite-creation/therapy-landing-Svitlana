@@ -408,6 +408,54 @@ button {
     transparent 36%
   );
 }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(44, 74, 107, 0.12);
+  border-radius: 14px;
+  padding: 14px 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.badge-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.badge-main {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.badge-sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  letter-spacing: 0.01em;
+}
+.badge-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+  flex-shrink: 0;
+}
 /* Bottom gradient to ground the composition */
 .hero__photo::after {
   content: "";
@@ -447,7 +495,7 @@ button {
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 4rem var(--pad) 6rem;
+  padding: 4rem var(--pad) 7rem;
   /* Text occupies the left 54% */
   display: flex;
   align-items: center;
@@ -808,7 +856,7 @@ button {
 
 .dir-card {
   background: var(--surface);
-  border: 1px solid var(--border-soft);
+  border-radius: var(--r);
   position: relative;
   overflow: hidden;
   transition:
@@ -822,20 +870,6 @@ button {
   box-shadow: var(--shadow-md);
   transform: translateY(-4px);
   border-color: var(--mist-dk);
-}
-.dir-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--slate-mid), var(--accent));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.dir-card:hover::after {
-  opacity: 1;
 }
 
 /* Image at the top of each card */
@@ -950,6 +984,7 @@ button {
   object-position: center top;
   box-shadow: var(--shadow-xl);
   display: block;
+  border-radius: var(--r);
 }
 /* Offset decorative border */
 .about__photo-frame {
@@ -965,6 +1000,7 @@ button {
   border: 1.5px solid var(--mist-dk);
   z-index: -1;
   pointer-events: none;
+  border-radius: var(--r);
 }
 
 /* Text column */
@@ -1096,8 +1132,8 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.25rem;
-  padding: 2.5rem 1.75rem;
+  gap: 1rem;
+  padding: 1.7rem 1.3rem;
   background: var(--surface);
   border-radius: var(--r-lg);
   border: 1px solid var(--border-soft);
@@ -1110,8 +1146,8 @@ button {
   transform: translateY(-4px);
 }
 .step__num {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--slate);
   flex-shrink: 0;
@@ -1323,6 +1359,8 @@ button {
 /* ─── Location / Map block ───────────────────────────── */
 .location-block {
   background: var(--surface);
+  border-radius: var(--r);
+  overflow: hidden;
 }
 
 .location-map {
@@ -1608,6 +1646,10 @@ button {
     transform: translateX(33%);
   }
 
+  .hero__inner {
+    padding-bottom: 9rem;
+  }
+
   .hero__content {
     max-width: 100%;
   }
@@ -1659,5 +1701,9 @@ button {
 @media (max-width: 480px) {
   .hero__stats {
     gap: 1.5rem;
+  }
+
+  .hero-badge {
+    left: 20px;
   }
 }
