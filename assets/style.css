@@ -115,11 +115,19 @@ button {
   padding: 1.1rem var(--pad);
   transition:
     box-shadow 0.4s var(--ease-out),
-    padding 0.4s var(--ease-out);
+    padding 0.4s var(--ease-out),
+    opacity 0.3s var(--ease-out),
+    transform 0.35s var(--ease-out);
 }
 .header--scrolled {
   box-shadow: var(--shadow-sm);
   padding: 0.85rem var(--pad);
+}
+
+.header--hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 .header__inner {
   display: flex;
@@ -282,6 +290,32 @@ button {
 }
 .mobile-menu__cta:hover {
   transform: scale(1.03);
+}
+
+.mobile-menu__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s var(--ease-out);
+  z-index: 1;
+}
+.mobile-menu__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transform: rotate(90deg);
 }
 
 /* ═══════════════════════════════════════
@@ -557,7 +591,7 @@ button {
   width: 44px;
   height: 1.5px;
   background: var(--mist-dk);
-  margin-bottom: 1rem;
+  margin-bottom: 1.75rem;
   opacity: 0;
   animation: hFadeUp 0.6s var(--ease-out) 0.45s forwards;
 }
@@ -1926,55 +1960,5 @@ button {
 
   .hero-badge {
     left: 20px;
-  }
-}
-
-/* ─── Hero Scroll Hint ─── */
-.hero__scroll-hint {
-  position: absolute;
-  bottom: 2.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  cursor: pointer;
-  opacity: 0;
-  animation: hFadeUp 0.6s var(--ease-out) 1.2s forwards;
-}
-
-.hero__scroll-hint-inner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(44, 74, 107, 0.18);
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-soft);
-  transition:
-    border-color 0.25s,
-    background 0.25s,
-    color 0.25s,
-    transform 0.25s var(--ease-out);
-  animation: scrollBounce 2.8s ease-in-out infinite;
-}
-
-.hero__scroll-hint:hover .hero__scroll-hint-inner {
-  border-color: var(--accent);
-  background: var(--accent-lt);
-  color: var(--accent);
-  animation-play-state: paused;
-  transform: translateY(2px);
-}
-
-@keyframes scrollBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
   }
 }
