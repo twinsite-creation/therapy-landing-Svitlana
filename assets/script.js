@@ -263,6 +263,21 @@ function initFaq() {
   });
 }
 
+/* ─── Hero Scroll Hint ─── */
+function initScrollHint() {
+  const hint = document.getElementById("scrollHint");
+  if (!hint) return;
+
+  hint.addEventListener("click", () => {
+    const hero = document.getElementById("hero");
+    const next = hero?.nextElementSibling;
+    if (!next) return;
+    const navHeight = document.getElementById("header")?.offsetHeight || 72;
+    const top = next.getBoundingClientRect().top + window.scrollY - navHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  });
+}
+
 /* ─── Init All ─── */
 document.addEventListener("DOMContentLoaded", () => {
   initScrollBar();
@@ -275,4 +290,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initBackToTop();
   initImageLoad();
   initFaq();
+  initScrollHint();
 });
