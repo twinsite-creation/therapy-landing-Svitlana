@@ -53,14 +53,15 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: clip;
 }
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 img {
   display: block;
@@ -410,6 +411,7 @@ button {
   align-items: center;
   /* Account for solid header */
   padding-top: 5rem;
+  overflow: hidden;
 }
 
 /* Right-side photo — bleeds to edge, takes 44% of width */
@@ -1001,7 +1003,7 @@ button {
 .about__inner {
   display: grid;
   grid-template-columns: 420px 1fr;
-  gap: clamp(3.5rem, 6vw, 7rem);
+  gap: 2.5rem;
   align-items: start;
 }
 
@@ -1009,6 +1011,7 @@ button {
 .about__photo-wrap {
   position: sticky;
   top: 7rem;
+  overflow: hidden;
 }
 .about__photo {
   width: 100%;
@@ -1022,6 +1025,7 @@ button {
 /* Offset decorative border */
 .about__photo-frame {
   position: relative;
+  overflow: visible;
 }
 .about__photo-frame::before {
   content: "";
@@ -1881,7 +1885,7 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header__nav,
   .header__cta {
     display: none;
@@ -1890,6 +1894,13 @@ button {
     display: flex;
   }
 
+  .about__photo-wrap {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
   /* Hero mobile: photo becomes subtle bg, text full width */
   .hero__photo {
     width: 100%;
