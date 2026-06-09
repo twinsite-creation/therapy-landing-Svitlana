@@ -1843,6 +1843,38 @@ button {
   transform: none !important;
 }
 
+/* ─── Messenger links — icon-only row ─── */
+.messenger-links--icons {
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.messenger-link--icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid var(--mist-dk);
+  background: var(--accent-lt);
+  color: var(--accent);
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    transform 0.2s var(--ease-out);
+}
+
+.messenger-link--icon:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 /* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
